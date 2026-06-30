@@ -1,0 +1,330 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #000;
+  background: #1a1a1a;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  min-height: 0;
+}
+
+#app canvas {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.lists {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  background: #f3f3f3;
+  border-right: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  color-scheme: light;
+}
+
+.lists,
+.slots-list,
+.timeline-panel {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 #f0f0f0;
+}
+
+.lists::-webkit-scrollbar,
+.slots-list::-webkit-scrollbar,
+.timeline-panel::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.lists::-webkit-scrollbar-track,
+.slots-list::-webkit-scrollbar-track,
+.timeline-panel::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.lists::-webkit-scrollbar-thumb,
+.slots-list::-webkit-scrollbar-thumb,
+.timeline-panel::-webkit-scrollbar-thumb {
+  background: #b8b8b8;
+  border-radius: 5px;
+  border: 2px solid #f0f0f0;
+}
+
+.lists::-webkit-scrollbar-thumb:hover,
+.slots-list::-webkit-scrollbar-thumb:hover,
+.timeline-panel::-webkit-scrollbar-thumb:hover {
+  background: #9a9a9a;
+}
+
+.panel-section {
+  padding: 12px 14px;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.option-row:hover {
+  background: #e8e8e8;
+}
+
+.option-row input {
+  margin: 0;
+  cursor: pointer;
+}
+
+.option-row label {
+  flex: 1;
+  color: #000;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.option-row input:checked + label {
+  font-weight: 600;
+}
+
+.timeline-panel {
+  background: #ececec;
+  border-top: 1px solid #d4d4d4;
+  padding: 10px 14px 14px;
+  max-height: 42vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  color-scheme: light;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.timeline-header .section-title {
+  flex: 1;
+}
+
+.track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.track-row {
+  background: #f8f8f8;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.track-row.track-active {
+  border-color: #7a9ec8;
+  background: #fff;
+}
+
+.track-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.track-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  min-width: 52px;
+}
+
+.track-select {
+  min-width: 140px;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+}
+
+.track-loop-label {
+  font-size: 12px;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+}
+
+.track-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  border: 1px solid #b8b8b8;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+}
+
+.track-btn-danger {
+  border-color: #d08080;
+  color: #8b0000;
+}
+
+.track-btn:hover {
+  background: #efefef;
+}
+
+.track-btn-play-toggle {
+  min-width: 52px;
+}
+
+.track-btn-playing {
+  background: #dce8f8;
+  border-color: #7a9ec8;
+}
+
+.track-events {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.track-event {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #e85d04;
+  border: 1px solid #fff;
+  pointer-events: auto;
+  cursor: help;
+  z-index: 2;
+}
+
+.slots-list {
+  max-height: 240px;
+  overflow-y: auto;
+  user-select: text;
+  color-scheme: light;
+}
+
+.slots-list * {
+  user-select: text;
+}
+
+.slot-row {
+  cursor: pointer;
+}
+
+.slot-row.slot-selected {
+  background: #dce8f8;
+}
+
+.slot-name {
+  color: #000;
+  font-size: 13px;
+}
+
+.event-tooltip {
+  position: fixed;
+  z-index: 1000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  white-space: nowrap;
+}
+
+.event-tooltip.visible {
+  opacity: 1;
+}
+
+.track-bar {
+  position: relative;
+  height: 28px;
+  background: #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #8eb4e8, #5a8fd4);
+  pointer-events: none;
+}
+
+.track-head {
+  position: absolute;
+  top: 2px;
+  width: 3px;
+  height: 24px;
+  margin-left: -1px;
+  background: #1a4f8f;
+  pointer-events: none;
+}
+
+.track-time {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #000;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff;
+}

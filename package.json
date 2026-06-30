@@ -1,0 +1,50 @@
+{
+  "name": "spine-inspector",
+  "displayName": "Spine Inspector",
+  "description": "Preview Spine skeletons and animations in a VS Code tab",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saents/spine-inspector.git"
+  },
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:spine-inspector.open"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "spine-inspector.open",
+        "title": "Open Spine Inspector"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "spine-inspector.open",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@pixi/unsafe-eval": "6.2.2",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  }
+}
