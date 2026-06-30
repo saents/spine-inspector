@@ -2,12 +2,27 @@
   "name": "spine-inspector",
   "displayName": "Spine Inspector",
   "description": "Preview Spine skeletons and animations in a VS Code tab",
+  "license": "MIT",
+  "icon": "imgs/logo.png",
+  "homepage": "https://github.com/saents/spine-inspector#readme",
+  "bugs": {
+    "url": "https://github.com/saents/spine-inspector/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/saents/spine-inspector.git"
   },
   "version": "0.1.0",
   "publisher": "saents",
+  "keywords": [
+    "spine",
+    "spine2d",
+    "animation",
+    "skeleton",
+    "pixi",
+    "preview",
+    "game-dev"
+  ],
   "engines": {
     "vscode": "^1.85.0"
   },

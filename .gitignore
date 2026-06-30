@@ -3,7 +3,7 @@ node_modules/
 
 # Build output
 dist/
-media/unsafe-eval.js
+media/pixi-canvas-patch.js
 
 # Packaged extension
 *.vsix

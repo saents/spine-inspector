@@ -60,7 +60,7 @@ flowchart LR
     Types[spineTypes.ts]
     Pixi[media/pixi.js]
     SpineRT[media/pixi-spine.js]
-    Unsafe[media/unsafe-eval.js]
+    Patch[media/pixi-canvas-patch.js]
   end
 
   Menu[Explorer context menu] --> Ext
@@ -88,7 +88,7 @@ flowchart LR
 | [`src/webview/spineTypes.ts`](src/webview/spineTypes.ts) | Webview | Shared types and Spine helpers (`applyPose`, `animationEvents`, etc.) |
 | [`media/pixi.js`](media/pixi.js) | Webview | PixiJS 6.2.2 (vendored) |
 | [`media/pixi-spine.js`](media/pixi-spine.js) | Webview | pixi-spine runtime for Spine 3.8 |
-| [`media/unsafe-eval.js`](media/unsafe-eval.js) | Webview | CSP-safe Pixi polyfill (copied on compile from `@pixi/unsafe-eval`) |
+| [`media/pixi-canvas-patch.js`](media/pixi-canvas-patch.js) | Webview | Pixi canvas polyfill (copied on compile from `@pixi/unsafe-eval`) |
 
 ### Data flow when opening a folder
 
@@ -106,7 +106,7 @@ sequenceDiagram
   Ext->>Panel: createOrShow(uri, manifest)
   Panel->>Panel: Build HTML with webview URIs
   Panel->>WV: window.__SPINE_INIT__ in HTML
-  WV->>WV: Load pixi + pixi-spine + unsafe-eval
+  WV->>WV: Load pixi + pixi-spine + canvas patch
   WV->>WV: Loader fetches json/atlas/png via webview URIs
   WV->>WV: Render canvas + timeline + slots
 ```
@@ -125,7 +125,7 @@ flowchart TB
     B1[dist/extension.js]
     B2[dist/webview.js]
     B3[dist/webview.css]
-    B4[media/unsafe-eval.js]
+    B4[media/pixi-canvas-patch.js]
   end
 
   TS_EXT --> B1
@@ -153,7 +153,7 @@ spine-inspector/
 ├── media/
 │   ├── pixi.js                 # Vendored Pixi (committed)
 │   ├── pixi-spine.js           # Vendored pixi-spine (committed)
-│   └── unsafe-eval.js          # Generated on compile (gitignored)
+│   └── pixi-canvas-patch.js    # Generated on compile (gitignored)
 ├── dist/                       # Build output (gitignored)
 ├── imgs/                       # Extension assets
 ├── esbuild.mjs                 # Build script
@@ -186,7 +186,7 @@ This produces:
 - `dist/extension.js` — extension host bundle
 - `dist/webview.js` — webview bundle
 - `dist/webview.css` — copied from `src/webview/main.css`
-- `media/unsafe-eval.js` — copied from `node_modules`
+- `media/pixi-canvas-patch.js` — copied from `node_modules/@pixi/unsafe-eval`
 
 ### Watch mode (development)
 
@@ -280,7 +280,7 @@ The folder must have at least one `.atlas` file and one `.json` skeleton file.
 
 | Problem | Fix |
 |---------|-----|
-| `unsafe-eval` error in webview | Run `npm run compile` so `media/unsafe-eval.js` is copied |
+| Pixi canvas patch error in webview | Run `npm run compile` so `media/pixi-canvas-patch.js` is copied |
 | Blank webview | Recompile, reload F5; check DevTools console |
 | Textures missing | Place PNG files next to the `.atlas` in the same folder |
 | Wrong Spine version | Export skeletons as **Spine 3.8.x** |

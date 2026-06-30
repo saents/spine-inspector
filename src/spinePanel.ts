@@ -90,8 +90,8 @@ export class SpinePanel {
   private getHtml(webview: vscode.Webview): string {
     const nonce = getNonce();
     const pixiUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media', 'pixi.js'));
-    const unsafeEvalUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this.extensionUri, 'media', 'unsafe-eval.js')
+    const pixiPatchUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this.extensionUri, 'media', 'pixi-canvas-patch.js')
     );
     const pixiSpineUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this.extensionUri, 'media', 'pixi-spine.js')
@@ -111,7 +111,7 @@ export class SpinePanel {
 <body>
   <div id="app"></div>
   <script nonce="${nonce}" src="${pixiUri}"></script>
-  <script nonce="${nonce}" src="${unsafeEvalUri}"></script>
+  <script nonce="${nonce}" src="${pixiPatchUri}"></script>
   <script nonce="${nonce}" src="${pixiSpineUri}"></script>
   <script nonce="${nonce}">window.__SPINE_INIT__=${initPayload};</script>
   <script nonce="${nonce}" src="${scriptUri}"></script>

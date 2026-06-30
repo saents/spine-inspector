@@ -12,7 +12,7 @@ function copyAssets() {
   copyFileSync('src/webview/main.css', 'dist/webview.css');
   copyFileSync(
     path.join(root, 'node_modules/@pixi/unsafe-eval/dist/browser/unsafe-eval.js'),
-    path.join(root, 'media/unsafe-eval.js')
+    path.join(root, 'media/pixi-canvas-patch.js')
   );
 }
 
