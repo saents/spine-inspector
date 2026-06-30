@@ -7,7 +7,7 @@
     "url": "https://github.com/saents/spine-inspector.git"
   },
   "version": "0.1.0",
-  "publisher": "local",
+  "publisher": "saents",
   "engines": {
     "vscode": "^1.85.0"
   },
